@@ -1,0 +1,28 @@
+<h1>Todo App!</h1>
+
+<!--    <ul>-->
+<!--        <li>this is todo item 1</li>-->
+<!--        <li>item2</li>-->
+<!--    </ul>-->
+
+<!--a model for each to do item -->
+<ul>
+    {% for item in items %}
+<li> {{item.content}}
+    <form action="/deleteTodo/{{item.id}}/" style="display:inline;" method="post" >
+
+        {% csrf_token %}
+        <input type="submit" value="delete" />
+</form>
+</li>
+     {% endfor %}
+</ul>
+<!-- So we send http request to addTodo page to handle the data given in fields. we use post method when we deal with databases. -->
+
+<!--the form inputs r sent by post method to /addTodo i.e addTodo view func-->
+<form action="/addTodo/" method="post">
+    {% csrf_token %}
+    <input type="text" name="content"/>
+    <input type="submit" value="Add" />
+
+</form>
